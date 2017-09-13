@@ -12,54 +12,62 @@ brain:
       default-get: unknown
       default-property: unknown
       default-map: unknown
-      learn-filename: $BOT_ROOT/aiml/template-y-learnf.aiml
+      learn-filename: ./aiml/learnf.aiml
 
     # Nodes
-    #nodes:
-    #  pattern_nodes: $BOT_ROOT/config/pattern_nodes.conf
-    #  template_nodes: $BOT_ROOT/config/template_nodes.conf
+    nodes:
+      pattern_nodes: ../program-y/bots/y-bot/config/pattern_nodes.conf
+      template_nodes: ../program-y/bots/y-bot/config/template_nodes.conf
 
     # Binary
     binaries:
       save_binary: false
       load_binary: false
-      binary_filename: $BOT_ROOT/templatey.brain
+      binary_filename: ./templatey.brain
       load_aiml_on_binary_fail: false
 
     # Braintree
-    braintree:
-      file: $BOT_ROOT/braintree.xml
-      content: xml
+    #braintree:
+    #  file: ./braintree.xml
+    #  content: xml
 
     files:
         aiml:
-            files: $BOT_ROOT/aiml
+            files: |
+                    ../program-y/bots/y-bot/aiml
+                    ./aiml
             extension: .aiml
             directories: true
-            errors: $BOT_ROOT/y-bot_errors.txt
-            duplicates: $BOT_ROOT/y-bot_duplicates.txt
-            conversation: $BOT_ROOT/y-bot-conversation.txt
+            errors: ./errors.txt
+            duplicates: ./duplicates.txt
+            conversation: ./conversation.txt
         sets:
-            files: $BOT_ROOT/sets
+            files: |
+                    ../program-y/bots/y-bot/sets
+                    ./sets
             extension: .txt
             directories: false
         maps:
-            files: $BOT_ROOT/maps
+            files: |
+                    ../program-y/bots/y-bot/maps
+                    ./maps
             extension: .txt
             directories: false
-        denormal: $BOT_ROOT/config/denormal.txt
-        normal: $BOT_ROOT/config/normal.txt
-        gender: $BOT_ROOT/config/gender.txt
-        person: $BOT_ROOT/config/person.txt
-        person2: $BOT_ROOT/config/person2.txt
-        properties: $BOT_ROOT/config/properties.txt
+        denormal: ../program-y/bots/y-bot/config/denormal.txt
+        normal: ../program-y/bots/y-bot/config/normal.txt
+        gender: ../program-y/bots/y-bot/config/gender.txt
+        person: ../program-y/bots/y-bot/config/person.txt
+        person2: ../program-y/bots/y-bot/config/person2.txt
+        properties: ../program-y/bots/y-bot/config/properties.txt
         rdf:
-            files:  $BOT_ROOT/rdf
+            files:  |
+                    ../program-y/bots/y-bot/rdf
+                    ./rdf
             extension: .txt
             directories: false
-        preprocessors: $BOT_ROOT/config/preprocessors.conf
-        postprocessors: $BOT_ROOT/config/postprocessors.conf
-        regex_templates: $BOT_ROOT/config/regex-templates.txt
+        preprocessors: ../program-y/bots/y-bot/config/preprocessors.conf
+        postprocessors: ../program-y/bots/y-bot/config/postprocessors.conf
+        regex_templates: ../program-y/bots/y-bot/config/regex-templates.txt
 
     services:
         REST:
@@ -82,7 +90,7 @@ brain:
         authorisation:
             classname: programy.security.authorise.usergroupsauthorisor.BasicUserGroupAuthorisationService
             denied_srai: AUTHORISATION_FAILED
-            usergroups: $BOT_ROOT/config/roles.yaml
+            usergroups: ../program-y/bots/y-bot/config/roles.yaml
 
     oob:
       default:
@@ -123,7 +131,7 @@ brain:
             dectoroman: programy.dynamic.maps.roman.MapDecimalToRoman
 
 bot:
-    license_keys: $BOT_ROOT/config/license.keys
+    license_keys: ../program-y/bots/y-bot/config/license.keys
 
     prompt: ">>>"
     initial_question: Hi, how can I help you today?
@@ -140,7 +148,7 @@ bot:
 
     spelling:
       classname: programy.spelling.norvig.NorvigSpellingChecker
-      corpus: $BOT_ROOT/spelling/corpus.txt
+      corpus: ../program-y/bots/y-bot/spelling/corpus.txt
       check_before: false
       check_and_retry: false
 
@@ -175,7 +183,7 @@ twitter:
   use_direct_message: true
   auto_follow: true
   storage: file
-  storage_location: $BOT_ROOT/storage/twitter.data
+  storage_location: ../program-y/bots/y-bot/storage/twitter.data
   welcome_message: Thanks for following me, send me a message and I'll try and help
 
 facebook:

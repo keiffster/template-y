@@ -12,6 +12,8 @@ Pre Processors inherit from the abstract base class
 
     programy.processors.processing.PreProcessor
 
+The class has a single method, process, which takes bot, client and the string to pre-process and should return the processed string
+
     class PreProcessor(Processor):
 
         def __init__(self):
@@ -21,9 +23,11 @@ Pre Processors inherit from the abstract base class
         def process(self, bot, clientid, string):
             pass
 
-Pre Processors inherit from the abstract base class
+Post Processors inherit from the abstract base class
 
     programy.processors.processing.PostProcessor
+
+The class has a single method, process, which takes bot, client and the string to post-process and should return the processed string
 
     class PostProcessor(Processor):
         def __init__(self):

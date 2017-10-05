@@ -46,4 +46,9 @@ In addition there are some config options you can decide on in config.yaml
         #  content: xml
        See the Program-Y for more details about what the braintree can be used for
 
-
+    4) Check you .sh or .cmd file t ensure that paths are correct
+        Template-y installs at the same level as program-y
+        Therefore the python paths and relative paths in config assume
+        that program-y is reached via the relative path ../program-y
+        If you install program-y and/or template in different paths to these
+        then you will need to adjust

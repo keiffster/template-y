@@ -1,3 +1,24 @@
+bot:
+    license_keys: ../program-y/bots/y-bot/config/license.keys
+
+    prompt: ">>>"
+    initial_question: Hi, how can I help you today?
+    default_response: Sorry, I don't have an answer for that!
+    empty_string_srai: YEMPTY
+    exit_response: So long, and thanks for the fish!
+
+    override_properties: true
+
+    max_question_recursion: 1000
+    max_question_timeout: 60
+    max_search_depth: 100
+    max_search_timeout: 60
+
+    spelling:
+      classname: programy.spelling.norvig.NorvigSpellingChecker
+      corpus: ../program-y/bots/y-bot/spelling/corpus.txt
+      check_before: false
+      check_and_retry: false
 
 brain:
 
@@ -12,45 +33,45 @@ brain:
       default-get: unknown
       default-property: unknown
       default-map: unknown
-      learn-filename: ./aiml/learnf.aiml
+      learn-filename: $BOT_ROOT/aiml/learnf.aiml
 
     # Nodes
-    nodes:
-      pattern_nodes: ../program-y/bots/y-bot/config/pattern_nodes.conf
-      template_nodes: ../program-y/bots/y-bot/config/template_nodes.conf
+    #nodes:
+    #  pattern_nodes: ../program-y/bots/y-bot/config/pattern_nodes.conf
+    #  template_nodes: ../program-y/bots/y-bot/config/template_nodes.conf
 
     # Binary
     binaries:
       save_binary: false
       load_binary: false
-      binary_filename: ./templatey.brain
+      binary_filename: $BOT_ROOT/temp/templatey.brain
       load_aiml_on_binary_fail: false
 
     # Braintree
     #braintree:
-    #  file: ./braintree.xml
+    #  file: $BOT_ROOT/braintree.xml
     #  content: xml
 
     files:
         aiml:
             files: |
                     ../program-y/bots/y-bot/aiml
-                    ./aiml
+                    $BOT_ROOT/aiml
             extension: .aiml
             directories: true
-            errors: ./errors.txt
-            duplicates: ./duplicates.txt
-            conversation: ./conversation.txt
+            errors: $BOT_ROOT/temp/errors.txt
+            duplicates: $BOT_ROOT/temp/duplicates.txt
+            conversation: $BOT_ROOT/temp/conversation.txt
         sets:
             files: |
                     ../program-y/bots/y-bot/sets
-                    ./sets
+                    $BOT_ROOT/sets
             extension: .txt
             directories: false
         maps:
             files: |
                     ../program-y/bots/y-bot/maps
-                    ./maps
+                    $BOT_ROOT/maps
             extension: .txt
             directories: false
         denormal: ../program-y/bots/y-bot/config/denormal.txt
@@ -62,7 +83,7 @@ brain:
         rdf:
             files:  |
                     ../program-y/bots/y-bot/rdf
-                    ./rdf
+                    $BOT_ROOT/rdf
             extension: .txt
             directories: false
         preprocessors: ../program-y/bots/y-bot/config/preprocessors.conf
@@ -130,27 +151,6 @@ brain:
             romantodec: programy.dynamic.maps.roman.MapRomanToDecimal
             dectoroman: programy.dynamic.maps.roman.MapDecimalToRoman
 
-bot:
-    license_keys: ../program-y/bots/y-bot/config/license.keys
-
-    prompt: ">>>"
-    initial_question: Hi, how can I help you today?
-    default_response: Sorry, I don't have an answer for that!
-    empty_string_srai: YEMPTY
-    exit_response: So long, and thanks for the fish!
-
-    override_properties: true
-
-    max_question_recursion: 1000
-    max_question_timeout: 60
-    max_search_depth: 100
-    max_search_timeout: 60
-
-    spelling:
-      classname: programy.spelling.norvig.NorvigSpellingChecker
-      corpus: ../program-y/bots/y-bot/spelling/corpus.txt
-      check_before: false
-      check_and_retry: false
 
 voice:
   tts: osx

@@ -103,3 +103,5 @@ ENV/
 # Pycharm
 .idea/
 .DS_Store
+
+storage/debug

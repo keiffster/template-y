@@ -2,9 +2,8 @@
 
 CLS
 
-mkdir .\temp
-
-SET PYTHONPATH=..\programy\src;..\programy\libs\MetOffer-1.3.2;.
-
-python ..\programy\src\programy\clients\console.py --config .\config.windows.yaml --cformat yaml --logging .\logging.windows.yaml
-
+IF NOT DEFINED PYTHONPATH (
+    ECHO PYTHONPATH not set
+) ELSE (
+    python -m programy.clients.events.console.client --config ..\..\config\windows\config.yaml --cformat yaml --logging ..\..\config\windows\logging.yaml
+)

@@ -88,7 +88,7 @@ console:
                 person2_storage:
                   file: ../../storage/lookups/person2.txt
                 regex_storage:
-                  file: ../../storage/lookups/regex.txt
+                  file: ../../storage/regex/regex-templates.txt
 
                 properties_storage:
                   file: ../../storage/properties/properties.txt

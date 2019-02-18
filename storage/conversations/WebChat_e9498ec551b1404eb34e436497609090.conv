@@ -1,0 +1,67 @@
+{
+    "client_context": {
+        "clientid": "WebChat",
+        "userid": "e9498ec551b1404eb34e436497609090",
+        "botid": "bot",
+        "brainid": "brain",
+        "depth": 0
+    },
+    "questions": [
+        {
+            "sentences": [
+                {
+                    "question": "What do you know",
+                    "response": "Sorry, I don't have an answer for that!",
+                    "positivity": 0.0,
+                    "subjectivity": 0.5
+                }
+            ],
+            "srai": false,
+            "properties": {},
+            "current_sentence_no": -1
+        },
+        {
+            "sentences": [
+                {
+                    "question": "Who created you",
+                    "response": "Sorry, I don't have an answer for that!",
+                    "positivity": 0.0,
+                    "subjectivity": 0.5
+                }
+            ],
+            "srai": false,
+            "properties": {},
+            "current_sentence_no": -1
+        },
+        {
+            "sentences": [
+                {
+                    "question": "Who are you",
+                    "response": "Sorry, I don't have an answer for that!",
+                    "positivity": 0.0,
+                    "subjectivity": 0.5
+                }
+            ],
+            "srai": false,
+            "properties": {},
+            "current_sentence_no": -1
+        },
+        {
+            "sentences": [
+                {
+                    "question": "Who created you",
+                    "response": "Sorry, I don't have an answer for that!",
+                    "positivity": 0.0,
+                    "subjectivity": 0.5
+                }
+            ],
+            "srai": false,
+            "properties": {},
+            "current_sentence_no": 0
+        }
+    ],
+    "max_histories": 100,
+    "properties": {
+        "topic": "*"
+    }
+}

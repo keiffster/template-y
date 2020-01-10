@@ -1,6 +1,5 @@
 console:
   description: Program-Y Template Console Client
-  bot:  bot
   prompt: ">>>"
 
   scheduler:
@@ -129,131 +128,124 @@ console:
               config:
                   conversation_logger: conversation
 
+  bots:
+    bot:
+      initial_question: Hi, how can I help you today?
+      initial_question_srai: YINITIALQUESTION
+      default_response: Sorry, I don't have an answer for that!
+      default_response_srai: YEMPTY
+      empty_string: YEMPTY
+      exit_response: So long, and thanks for the fish!
+      exit_response_srai: YEXITRESPONSE
 
-#####################################################################################################
-#
+      override_properties: true
 
-bot:
-    brain: brain
+      max_question_recursion: 1000
+      max_question_timeout: 60
+      max_search_depth: 100
+      max_search_timeout: 60
 
-    initial_question: Hi, how can I help you today?
-    initial_question_srai: YINITIALQUESTION
-    default_response: Sorry, I don't have an answer for that!
-    default_response_srai: YEMPTY
-    empty_string: YEMPTY
-    exit_response: So long, and thanks for the fish!
-    exit_response_srai: YEXITRESPONSE
+      spelling:
+        load: true
+        classname: programy.spelling.norvig.NorvigSpellingChecker
+        corpus: file
+        check_before: false
+        check_and_retry: false
 
-    override_properties: true
-
-    max_question_recursion: 1000
-    max_question_timeout: 60
-    max_search_depth: 100
-    max_search_timeout: 60
-
-    spelling:
-      load: true
-      classname: programy.spelling.norvig.NorvigSpellingChecker
-      corpus: file
-      check_before: false
-      check_and_retry: false
-
-    conversations:
-      save: true
-      load: false
+      conversations:
+        save: true
+        load: false
 
 
-#####################################################################################################
-#
+      brains:
+        brain:
 
-brain:
+            # Overrides
+            overrides:
+              allow_system_aiml: true
+              allow_learn_aiml: true
+              allow_learnf_aiml: true
 
-    # Overrides
-    overrides:
-      allow_system_aiml: true
-      allow_learn_aiml: true
-      allow_learnf_aiml: true
+            # Defaults
+            defaults:
+              default_get: unknown
+              default_property: unknown
+              default_map: unknown
 
-    # Defaults
-    defaults:
-      default-get: unknown
-      default-property: unknown
-      default-map: unknown
+            # Binary
+            binaries:
+              save_binary: false
+              load_binary: false
+              load_aiml_on_binary_fail: false
 
-    # Binary
-    binaries:
-      save_binary: false
-      load_binary: false
-      load_aiml_on_binary_fail: false
+            debugfiles:
+              save-errors: true
+              save-duplicates: true
 
-    debugfiles:
-      save-errors: true
-      save-duplicates: true
+            # Braintree
+            braintree:
+              create: False
 
-    # Braintree
-    braintree:
-      create: False
+            services:
+                REST:
+                    classname: programy.services.rest.GenericRESTService
+                    method: GET
+                    host: 0.0.0.0
+                Pannous:
+                    classname: programy.services.pannous.PannousService
+                    url: http://weannie.pannous.com/api
+                Pandora:
+                    classname: programy.services.pandora.PandoraService
+                    url: http://www.pandorabots.com/pandora/talk-xml
+                Wikipedia:
+                    classname: programy.services.wikipediaservice.WikipediaService
+                DuckDuckGo:
+                    classname: programy.services.duckduckgo.DuckDuckGoService
+                    url: http://api.duckduckgo.com
 
-    services:
-        REST:
-            classname: programy.services.rest.GenericRESTService
-            method: GET
-            host: 0.0.0.0
-        Pannous:
-            classname: programy.services.pannous.PannousService
-            url: http://weannie.pannous.com/api
-        Pandora:
-            classname: programy.services.pandora.PandoraService
-            url: http://www.pandorabots.com/pandora/talk-xml
-        Wikipedia:
-            classname: programy.services.wikipediaservice.WikipediaService
-        DuckDuckGo:
-            classname: programy.services.duckduckgo.DuckDuckGoService
-            url: http://api.duckduckgo.com
+            security:
+                authentication:
+                    classname: programy.security.authenticate.passthrough.BasicPassThroughAuthenticationService
+                    denied_srai: AUTHENTICATION_FAILED
+                authorisation:
+                    classname: programy.security.authorise.usergroupsauthorisor.BasicUserGroupAuthorisationService
+                    denied_srai: AUTHORISATION_FAILED
 
-    security:
-        authentication:
-            classname: programy.security.authenticate.passthrough.BasicPassThroughAuthenticationService
-            denied_srai: AUTHENTICATION_FAILED
-        authorisation:
-            classname: programy.security.authorise.usergroupsauthorisor.BasicUserGroupAuthorisationService
-            denied_srai: AUTHORISATION_FAILED
+            oob:
+              default:
+                classname: programy.oob.defaults.default.DefaultOutOfBandProcessor
+              alarm:
+                classname: programy.oob.defaults.alarm.AlarmOutOfBandProcessor
+              camera:
+                classname: programy.oob.defaults.camera.CameraOutOfBandProcessor
+              clear:
+                classname: programy.oob.defaults.clear.ClearOutOfBandProcessor
+              dial:
+                classname: programy.oob.defaults.dial.DialOutOfBandProcessor
+              dialog:
+                classname: programy.oob.defaults.dialog.DialogOutOfBandProcessor
+              email:
+                classname: programy.oob.defaults.email.EmailOutOfBandProcessor
+              geomap:
+                classname: programy.oob.defaults.map.MapOutOfBandProcessor
+              schedule:
+                classname: programy.oob.defaults.schedule.ScheduleOutOfBandProcessor
+              search:
+                classname: programy.oob.defaults.search.SearchOutOfBandProcessor
+              sms:
+                classname: programy.oob.defaults.sms.SMSOutOfBandProcessor
+              url:
+                classname: programy.oob.defaults.url.URLOutOfBandProcessor
+              wifi:
+                classname: programy.oob.defaults.wifi.WifiOutOfBandProcessor
 
-    oob:
-      default:
-        classname: programy.oob.defaults.default.DefaultOutOfBandProcessor
-      alarm:
-        classname: programy.oob.defaults.alarm.AlarmOutOfBandProcessor
-      camera:
-        classname: programy.oob.defaults.camera.CameraOutOfBandProcessor
-      clear:
-        classname: programy.oob.defaults.clear.ClearOutOfBandProcessor
-      dial:
-        classname: programy.oob.defaults.dial.DialOutOfBandProcessor
-      dialog:
-        classname: programy.oob.defaults.dialog.DialogOutOfBandProcessor
-      email:
-        classname: programy.oob.defaults.email.EmailOutOfBandProcessor
-      geomap:
-        classname: programy.oob.defaults.map.MapOutOfBandProcessor
-      schedule:
-        classname: programy.oob.defaults.schedule.ScheduleOutOfBandProcessor
-      search:
-        classname: programy.oob.defaults.search.SearchOutOfBandProcessor
-      sms:
-        classname: programy.oob.defaults.sms.SMSOutOfBandProcessor
-      url:
-        classname: programy.oob.defaults.url.URLOutOfBandProcessor
-      wifi:
-        classname: programy.oob.defaults.wifi.WifiOutOfBandProcessor
-
-    dynamic:
-        variables:
-            gettime: programy.dynamic.variables.datetime.GetTime
-        sets:
-            numeric: programy.dynamic.sets.numeric.IsNumeric
-            roman:   programy.dynamic.sets.roman.IsRomanNumeral
-        maps:
-            romantodec: programy.dynamic.maps.roman.MapRomanToDecimal
-            dectoroman: programy.dynamic.maps.roman.MapDecimalToRoman
+            dynamic:
+                variables:
+                    gettime: programy.dynamic.variables.datetime.GetTime
+                sets:
+                    numeric: programy.dynamic.sets.numeric.IsNumeric
+                    roman:   programy.dynamic.sets.roman.IsRomanNumeral
+                maps:
+                    romantodec: programy.dynamic.maps.roman.MapRomanToDecimal
+                    dectoroman: programy.dynamic.maps.roman.MapDecimalToRoman
 

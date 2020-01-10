@@ -19,10 +19,6 @@ class WebChatBotClient(FlaskRestBotClient):
 
     def __init__(self, argument_parser=None):
         FlaskRestBotClient.__init__(self, "WebChat", argument_parser)
-        # Enter you API keys, here, alternatively store in a db or file and load at startup
-        # This is an exmaple, and therefore not suitable for production
-        self._api_keys = [
-        ]
 
     def get_client_configuration(self):
         return WebChatConfiguration()
@@ -30,25 +26,17 @@ class WebChatBotClient(FlaskRestBotClient):
     def get_default_renderer(self):
         return HtmlRenderer()
 
-    def is_apikey_valid(self, apikey):
-        return bool(apikey in self._api_keys)
-
-    def get_api_key(self, request):
-        if 'api_key' in request.args:
-            return request.args['api_key']
-        return None
-
     def unauthorised_access_response(self, error_code=401):
         return make_response(jsonify({'error': 'Unauthorized access'}), error_code)
 
     def check_api_key(self, request):
         if self.configuration.client_configuration.use_api_keys is True:
-            api_key = self.get_api_key(request)
+            api_key = self.api_keys.get_api_key(request)
             if api_key is None:
                 YLogger.error(self, "Unauthorised access - api required but missing")
                 return self.unauthorised_access_response()
 
-            if self.is_apikey_valid(api_key) is False:
+            if self.api_keys.is_apikey_valid(api_key) is False:
                 YLogger.error(self, "'Unauthorised access - invalid api key")
                 return self.unauthorised_access_response()
 
